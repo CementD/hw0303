@@ -2,7 +2,9 @@ namespace homework0303
 {
     public partial class Form1 : Form
     {
-        List<Button> buttons = new List<Button>();
+        private List<Button> buttons = new List<Button>();
+        private Button lastBtn;
+        private NumericUpDown lastNum;
         public Form1()
         {
             InitializeComponent();
@@ -41,6 +43,10 @@ namespace homework0303
         {
             if (sender is Button btn)
             {
+                if (lastBtn != null)
+                    lastBtn.Visible = false;
+                if (lastNum != null)
+                    lastNum.Visible = false;
                 label1.Text += $"\n-{btn.Text} ";
                 NumericUpDown numeric = new NumericUpDown()
                 {
@@ -69,6 +75,8 @@ namespace homework0303
                     selectButton.Visible = false;    
                 };
                 this.Controls.Add(selectButton);
+                lastBtn = selectButton;
+                lastNum = numeric;
             }
         }
 
